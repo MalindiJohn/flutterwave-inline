@@ -1,54 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/main.css">
-    <script src="https://checkout.flutterwave.com/v3.js"></script>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="/main.css" />
+        <script src="https://checkout.flutterwave.com/v3.js"></script>
+    </head>
+    <body>
+        <form>
+            <div>Your order is KES 2,500</div>
 
-    <form>
+            <button
+                type="button"
+                id="start-payment-button"
+                onclick="makePayment()"
+            >
+                Pay Now
+            </button>
+        </form>
 
-        <div>
-            Your order is KES 2,500
-        </div>
-
-        <button type="button" id="start-payment-button" onclick="makePayment()">Pay Now</button>
-    </form>
-    
-    <script>
-    function makePayment() {
-        FlutterwaveCheckout({
-        public_key: "FLWPUBK_TEST-02b9b5fc6406bd4a41c3ff141cc45e93-X",
-        tx_ref: "txref-DI0NzMx13",
-        amount: 2500,
-        currency: "KES",
-        payment_options: "mpesa",
-        meta: {
-            source: "docs-inline-test",
-            consumer_mac: "92a3-912ba-1192a",
-        },
-        customer: {
-            email: "example@gmail.com",
-            phone_number: "0712345678",
-            name: "John Dhoe",
-        },
-        customizations: {
-            title: "Flutterwave Developers",
-            description: "Test Payment",
-            logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
-        },
-        callback: function (data){
-            console.log("payment callback:", data);
-        },
-        onclose: function() {
-            console.log("Payment cancelled!");
-        }
-        });
-    }
-    </script>
-    
-</body>
+        <script>
+            function makePayment() {
+                FlutterwaveCheckout({
+                    public_key:
+                        "FLWPUBK_TEST-02b9b5fc6406bd4a41c3ff141cc45e93-X",
+                    tx_ref: "txref-DI0NzMx13",
+                    amount: 2500,
+                    currency: "KES",
+                    payment_options: "mpesa",
+                    meta: {
+                        source: "docs-inline-test",
+                        consumer_mac: "92a3-912ba-1192a",
+                    },
+                    customer: {
+                        email: "example@gmail.com",
+                        phone_number: "0712345678",
+                        name: "John Dhoe",
+                    },
+                    customizations: {
+                        title: "Flutterwave Developers",
+                        description: "Test Payment",
+                        logo: "https://checkout.flutterwave.com/assets/img/rave-logo.png",
+                    },
+                    callback: function (data) {
+                        console.log("payment callback:", data);
+                    },
+                    onclose: function () {
+                        console.log("Payment cancelled!");
+                    },
+                });
+            }
+        </script>
+    </body>
 </html>
